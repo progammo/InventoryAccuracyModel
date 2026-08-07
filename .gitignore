@@ -1,0 +1,16 @@
+# ignore .venv files
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data files
+*.csv
+
+# Generated outputs
+*.png
+*.pkl
+
+# Environment variables / secrets
+.env
