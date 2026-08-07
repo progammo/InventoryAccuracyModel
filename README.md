@@ -16,3 +16,7 @@ Dashboard.py is a streamlit app that gives us a small idea on how each sku_id is
 Conclusion:
 The lightgbm regressor did not perform so well and the naive baseline of rolling_8w_mean performed better with a lower MAE(Mean Absolute Error). New features added were lags of 1 week 2 week 4 week, rolling_4w_mean rolling_4w_std rolling_4w_median and a rolling_8w_mean.
 
+Disclaimer: 
+This was build on dummy data and if someone wants to use it they may test it by themselves. More work needs to be done on it.
+
+
