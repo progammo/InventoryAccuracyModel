@@ -4,8 +4,10 @@ import numpy as np
 def prepare_data():
     df = pd.read_csv("Data\\sales_inventory.csv")
     df["date"] = pd.to_datetime(df["date"])
+    df.drop_duplicates(subset=["sku_id", "date","brand"], keep="last", inplace=True)
+    df.to_csv("Data\\sales_inventory_cleaned.csv", index=False)
     df = df.sort_values(["sku_id", "date"]).reset_index(drop=True)
-
+    
     df = (
         df.groupby(["sku_id", "date"], as_index=False)
           .agg({
