@@ -10,7 +10,7 @@ Original file is located at
 import pandas as pd
 import numpy as np
 import matplotlib
-matplotlib.use("Agg") 
+# matplotlib.use("Agg") 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import shap
@@ -25,7 +25,7 @@ import math
 import xgboost as xgb
 import lightgbm as lgb
 
-df = pd.read_csv("D:\\Priceoye\\Inventory_Accuracy_ModelV1\\sales_inventory.csv")
+df = pd.read_csv("Data\\sales_inventory.csv")
 
 # print(df["date"].dtype)
 
@@ -224,7 +224,7 @@ def drawPlot(skuid, df):
     plt.show()
 
 # Call the function
-drawPlot("SKU_INFINIX_0014", weekly_df)
+drawPlot("SKU_JBL_0001", weekly_df)
 
 # print(weekly_df.index.get_level_values("sku_id").unique())
 

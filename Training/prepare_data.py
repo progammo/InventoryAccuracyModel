@@ -23,10 +23,10 @@ def prepare_data():
     mask = (df["date"] >= "2026-02-09") & (df["date"] <= "2026-02-15")
     mask2 = (df["date"] >= "2026-04-13") & (df["date"] <= "2026-04-20")
     mask3 = (df["date"] >= "2026-06-15") & (df["date"] <= "2026-06-22")
-    df.loc[mask, "promotional_flag_discount"] = 5000
-    df.loc[mask2, "promotional_flag_discount"] = 3000
-    df.loc[mask3, "promotional_flag_discount"] = 4000
-    df["net_price"] = df["price"] - df["promotional_flag_discount"]
+    df.loc[mask, "promotional_flag_discount"] = (df.loc[mask, "price"] * 0.1).round(2)
+    df.loc[mask2, "promotional_flag_discount"] = (df.loc[mask2, "price"] * 0.15).round(2)
+    df.loc[mask3, "promotional_flag_discount"] = (df.loc[mask3, "price"] * 0.2).round(2)
+    df["net_price"] = (df["price"] - df["promotional_flag_discount"]).round(2)
 
     weekly_df = (
         df.groupby(["sku_id", pd.Grouper(key="date", freq="W-MON")])
@@ -46,7 +46,7 @@ def prepare_data():
         lambda x: x.shift(1).rolling(window=4, min_periods=1).median())
 
     weekly_df.dropna(inplace=True)
-
+    weekly_df = weekly_df.round(2)
     # Save outputs for the next stage
     df.to_csv("Data\\processed_daily.csv", index=False)
     weekly_df.reset_index().to_csv("Data\\processed_weekly.csv", index=False)
